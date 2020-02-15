@@ -761,3 +761,21 @@
         }
     }
 }
+
+.dark-mode {
+    input, textarea{
+        background-color: #151313 !important;
+        color: #fff !important;
+        border: none !important;
+    }
+
+    img {
+        filter: brightness(0.6) !important;
+    }
+
+    .comment-preview, .comment-content {
+        background-color: #151313 !important;
+        color: #fff !important;
+        border: none !important;
+    }
+}

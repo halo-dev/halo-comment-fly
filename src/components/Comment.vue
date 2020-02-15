@@ -1,6 +1,6 @@
 <template>
   <div
-    class="halo-comment"
+    :class="mergedConfigs.darkMode ? 'halo-comment dark-mode': 'halo-comment'"
     id="halo-comment"
   >
 
@@ -25,7 +25,7 @@
 
     <comment-loading
       v-show="commentLoading"
-      :configs="configs"
+      :configs="typeof configs === 'string' ? JSON.parse(configs) : configs"
     />
 
     <ol
@@ -90,9 +90,10 @@ export default {
         autoLoad: true,
         showUserAgent: true,
         gravatarSource: "//cdn.v2ex.com/gravatar",
-        loadingStyle: "default"
+        loadingStyle: "default",
+        darkMode: false
       })
-    }
+    },
   },
   data() {
     return {
@@ -119,14 +120,19 @@ export default {
       return `${this.type}s`;
     },
     mergedConfigs() {
+      let propConfigs = this.configs;
+      if (typeof this.configs === 'string') {
+        propConfigs = JSON.parse(this.configs);
+      }
       return Object.assign(
-        {
-          autoLoad: true,
-          showUserAgent: true,
-          gravatarSource: "//cdn.v2ex.com/gravatar",
-          loadingStyle: "default"
-        },
-        this.configs
+              {
+                autoLoad: true,
+                showUserAgent: true,
+                gravatarSource: "//cdn.v2ex.com/gravatar",
+                loadingStyle: "default",
+                darkMode: false
+              },
+              propConfigs
       );
     }
   },

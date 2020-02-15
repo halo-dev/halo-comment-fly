@@ -88,9 +88,9 @@
               @click="handleGithubLogin"
             >Github 登陆</a>
           </li> -->
-          <li>
-            <button type="button" @click="handleToogleDialogEmoji">表情</button>
-          </li>
+<!--          <li>-->
+<!--            <button type="button" @click="handleToogleDialogEmoji">表情</button>-->
+<!--          </li>-->
           <li class="middle">
             <a
               class="button-submit"
