@@ -764,18 +764,37 @@
 
 .dark-mode {
     input, textarea{
-        background-color: #151313 !important;
-        color: #fff !important;
+        background-color: #232125 !important;
+        color: #a9a9b3 !important;
         border: none !important;
     }
 
     img {
         filter: brightness(0.6) !important;
     }
-
-    .comment-preview, .comment-content {
-        background-color: #151313 !important;
-        color: #fff !important;
+    .comment-content {
+        background-color: #292a2d !important;
+        color: #a9a9b3 !important;
         border: none !important;
+    }
+
+    .comment-preview {
+        background-color: #232125 !important;
+        color: #a9a9b3 !important;
+        border: none !important;
+    }
+
+    .comment-nodes .index-1 {
+        border-bottom: 3px solid #36393c;
+    }
+
+    .comment-page {
+        border-top: 3px solid #36393c;
+    }
+
+    .comment-page .page button {
+        background-color: #676a6c;
+        color: #fff;
+        border: 1px solid #676a6c;
     }
 }
