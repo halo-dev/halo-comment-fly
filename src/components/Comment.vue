@@ -98,6 +98,7 @@ export default {
   data() {
     return {
       comments: [],
+      commentAuthor: new Map(),
       pagination: {
         pages: 0,
         page: 0,
@@ -153,11 +154,34 @@ export default {
           this.pagination.size = response.data.data.rpp;
           this.pagination.total = response.data.data.total;
           this.pagination.pages = response.data.data.pages;
+          if (this.comments) {
+            this.comments.forEach((comment) => {
+              this.setCommentAuthor(comment);
+            })
+          }
         })
         .finally(() => {
           this.commentLoading = false;
           this.loaded = true;
         });
+    },
+    setCommentAuthor(comment) {
+      if (comment.children) {
+        this.commentAuthor.set(comment.id, comment.author);
+        this.setCommentAuthor(comment.children);
+      }
+      if (comment instanceof Array) {
+        comment.forEach((c) => {
+          if (c.parentId > 0) {
+            c.parentAuthor = this.commentAuthor.get(c.parentId);
+            this.setCommentAuthor(c);
+          }
+        });
+        comment.sort(this.sortComment);
+      }
+    },
+    sortComment(a, b) {
+      return a.id - b.id;
     },
     loadOptions() {
       optionApi.list().then(response => {

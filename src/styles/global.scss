@@ -196,16 +196,18 @@
     }
 
     .comment.index-1>ol.children {
-        padding-left: 1.5rem;
+        padding-left: 1.2rem;
     }
+
 
     .children img.avatar {
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
     }
 
+
     .children .contain-main {
-        margin-left: 38px;
+        margin-left: 48px;
     }
 
     .comment-preview {
@@ -496,7 +498,16 @@
             margin-top: 6px;
             font-size: .1rem;
             color: #b3b3b3;
+            //display: inline-block;
+            //margin-left: 1rem;
         }
+
+        @media only screen and (max-width:768px) {
+            .useragent-info {
+                display: block;
+            }
+        }
+
     }
 
     .comment-author {
@@ -544,6 +555,10 @@
         }
     }
 
+    .comment-content.markdown-body > p {
+        display: inline-block;
+        margin-left: .5rem;
+    }
     .comment-reply {
         display: none;
         float: right;
