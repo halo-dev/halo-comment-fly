@@ -15,6 +15,7 @@
     "md5": "^2.2.1",
     "promise.prototype.finally": "^3.1.2",
     "ua-parser-js": "^0.7.21",
+    "viewerjs": "^1.6.1",
     "vue": "^2.6.10"
   },
   "devDependencies": {

@@ -30,6 +30,8 @@
 
     <ol
       class="comment-nodes"
+      id="comment-nodes"
+      ref="gallery"
       v-if="comments.length>=1"
     >
       <template v-for="(comment, index) in comments">
@@ -63,9 +65,13 @@
   </div>
 </template>
 <script>
+
 import "./index";
 import commentApi from "../api/comment";
 import optionApi from "../api/option";
+import Viewer from 'viewerjs';
+import 'viewerjs/dist/viewer.css';
+
 export default {
   name: "Comment",
   props: {
@@ -142,6 +148,18 @@ export default {
       this.loadComments();
     }
     this.loadOptions();
+  },
+  updated() {
+    // 评论图片灯箱
+    if (document.getElementById('comment-nodes')) {
+      new Viewer(document.getElementById('comment-nodes'), {
+        inline: false,
+        filter(image) {
+          const clsName = image.className + '';
+          return clsName.indexOf('avatar') < 0;
+        },
+      });
+    }
   },
   methods: {
     loadComments() {
