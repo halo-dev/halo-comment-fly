@@ -1,4 +1,6 @@
-<h1 align="center"><a href="https://github.com/halo-dev" target="_blank">halo-comment-normal</a></h1>
+<h1 align="center"><a href="https://github.com/halo-dev" target="_blank">halo-comment-hshan</a></h1>
+
+
 
 > 适用于 Halo 的评论组件。
 
@@ -9,7 +11,7 @@
 
 1. 进入后台 -> 系统 -> 博客设置 -> 评论设置
 
-2. 将 `评论模块 JS` 修改为：`https://cdn.jsdelivr.net/npm/halo-comment-normal@1.1.1/dist/halo-comment.min.js`
+2. 将 `评论模块 JS` 修改为：`https://cdn.jsdelivr.net/gh/hshanx/halo-comment-hshan@2.0.0/dist/halo-comment.min.js`
 
 ### 自定义配置
 
