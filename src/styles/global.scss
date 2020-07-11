@@ -848,6 +848,19 @@
     img {
         filter: brightness(0.6) !important;
     }
+
+    .comment-form {
+        border: 1px solid rgba(35, 36, 38, 0.96) !important;
+        border-radius: 0;
+    }
+
+    .comment-pre-content  {
+        background-color: #232125 !important;
+        .markdown-body {
+            color: #a9a9b3 !important;
+        }
+        box-shadow: none !important;
+    }
     .comment-content {
         background-color: #292a2d !important;
         color: #a9a9b3 !important;
