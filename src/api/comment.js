@@ -13,7 +13,7 @@ commentApi.createComment = (target, comment) => {
 
 commentApi.listComments = (target, targetId, view = 'tree_view', pagination) => {
     return service({
-        url: `${baseUrl}/${target}/${targetId}/comments/${view}`,
+        url: `${baseUrl}/posts/34/comments/${view}`,
         params: pagination,
         method: 'get'
     })

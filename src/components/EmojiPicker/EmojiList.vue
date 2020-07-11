@@ -23,7 +23,6 @@
           <div
             v-if="category.length"
             class="grid-emojis"
-            :style="gridDynamic"
           >
             <Emoji
               v-for="(emoji, index_e) in category"
@@ -37,7 +36,6 @@
       <div
         v-else
         class="grid-emojis"
-        :style="gridDynamic"
       >
         <Emoji
           v-for="(emoji, index) in dataFiltered"
@@ -72,7 +70,7 @@ export default {
   },
   computed: {
     gridDynamic() {
-      const percent = 100 / this.emojisByRow
+      const percent = 100 / 20
       return {
         gridTemplateColumns: `repeat(${this.emojisByRow}, ${percent}%)`
       }

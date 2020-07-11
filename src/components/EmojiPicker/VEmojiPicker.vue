@@ -31,11 +31,11 @@ import InputSearch from './InputSearch'
 export default {
   name: 'VEmojiPicker',
   props: {
-    pack: { type: Array, required: true },
+    pack: { type: Array, required: false },
     labelSearch: { type: String, default: 'Pesquisar...' },
-    showCategory: { type: Boolean, default: true },
-    emojisByRow: { type: Number, default: 5 },
-    showSearch: { type: Boolean, default: () => true },
+    showCategory: { type: Boolean, default: false },
+    emojisByRow: { type: Number, default: 10 },
+    showSearch: { type: Boolean, default: () => false },
     continuousList: { type: Boolean, default: () => false }
   },
   components: {

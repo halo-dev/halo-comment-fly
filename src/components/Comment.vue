@@ -10,7 +10,9 @@
       :options="options"
       :configs="mergedConfigs"
     />
-
+    <div class="comment-count">
+      <span class="vnum" v-html="commentCount"></span>  评论
+    </div>
     <div
       class="comment-load-button"
       v-if="!mergedConfigs.autoLoad && !loaded"
@@ -112,6 +114,7 @@ export default {
         size: 5,
         total: 0
       },
+      commentCount:0,
       commentLoading: false,
       loaded: false,
       repliedSuccess: null,
@@ -168,6 +171,7 @@ export default {
       commentApi
         .listComments(this.target, this.id, "tree_view", this.pagination)
         .then(response => {
+          this.commentCount = response.data.data.commentCount;
           this.comments = response.data.data.content;
           this.pagination.size = response.data.data.rpp;
           this.pagination.total = response.data.data.total;
@@ -214,7 +218,8 @@ export default {
 };
 </script>
 <style lang="scss">
-$color: #898c7b;
+$color: #666;
+$md-link-color:#2474b5;
 @import "../styles/global";
 @import "../styles/github-markdown";
 </style>
