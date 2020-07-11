@@ -154,8 +154,9 @@ export default {
   },
   updated() {
     // 评论图片灯箱
-    if (document.getElementById('comment-nodes')) {
-      new Viewer(document.getElementById('comment-nodes'), {
+    const gallery = this.$refs.gallery;
+    if (gallery) {
+      new Viewer(gallery, {
         inline: false,
         filter(image) {
           const clsName = image.className + '';
@@ -219,7 +220,7 @@ export default {
 </script>
 <style lang="scss">
 $color: #666;
-$md-link-color:#2474b5;
+$md-link-color:#1890ff;
 @import "../styles/global";
 @import "../styles/github-markdown";
 </style>
