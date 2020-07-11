@@ -6168,6 +6168,7 @@ service.interceptors.response.use(response => {
 /* harmony default export */ var utils_service = (service);
 // CONCATENATED MODULE: ./src/api/comment.js
 
+
 var baseUrl = '/api/content';
 var commentApi = {};
 
@@ -6183,7 +6184,7 @@ commentApi.listComments = function (target, targetId) {
   var view = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'tree_view';
   var pagination = arguments.length > 3 ? arguments[3] : undefined;
   return utils_service({
-    url: "".concat(baseUrl, "/posts/34/comments/").concat(view),
+    url: "".concat(baseUrl, "/").concat(target, "/").concat(targetId, "/comments/").concat(view),
     params: pagination,
     method: 'get'
   });
