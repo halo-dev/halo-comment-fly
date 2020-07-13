@@ -298,7 +298,7 @@
                     return;
                 }
                 // comment 需要是 Markdown 格式的
-                this.comment.content = this.renderedContent();
+                this.comment.content = mark(this.comment.content);
                 // Submit the comment
                 this.comment.postId = this.targetId;
                 if (this.replyComment) {
