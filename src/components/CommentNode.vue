@@ -95,7 +95,7 @@
 </template>
 <script>
     import "./index";
-    import {timeAgo} from "@/utils/util";
+    import {timeAgo, decodeHTML} from "@/utils/util";
     import ua from "ua-parser-js";
     import marked from "marked";
 
@@ -159,7 +159,7 @@
                         '">@' + this.comment.parentAuthor +
                         "</a>";
                 }
-                return at + marked(this.comment.content);
+                return at + marked(decodeHTML(this.comment.content));
             },
             createTimeAgo() {
                 return timeAgo(this.comment.createTime);

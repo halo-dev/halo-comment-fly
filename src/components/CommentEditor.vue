@@ -286,19 +286,22 @@
         methods: {
             handleSubmitClick() {
                 if (isEmpty(this.comment.author)) {
-                    this.warnings.push("评论者昵称不能为空");
-                    return;
+                    // this.warnings.push("评论者昵称不能为空");
+                    // return;
+                    this.comment.author = 'Anonymous';
                 }
                 if (isEmpty(this.comment.email)) {
                     this.warnings.push("邮箱不能为空");
                     return;
+                    // this.comment.email = '1@t.t';
                 }
                 if (isEmpty(this.comment.content)) {
                     this.warnings.push("评论内容不能为空");
                     return;
                 }
                 // comment 需要是 Markdown 格式的
-                this.comment.content = marked(this.comment.content);
+                const content = marked(this.comment.content);
+
                 // Submit the comment
                 this.comment.postId = this.targetId;
                 if (this.replyComment) {
@@ -306,7 +309,7 @@
                     this.comment.parentId = this.replyComment.id;
                 }
                 commentApi
-                    .createComment(this.target, this.comment)
+                    .createComment(this.target, {...this.comment, content})
                     .then(response => {
                         // Store comment author, email, authorUrl
                         localStorage.setItem("comment-author", this.comment.author);

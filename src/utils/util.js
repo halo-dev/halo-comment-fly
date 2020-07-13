@@ -93,3 +93,12 @@ export function getUrlKey(name) {
         ) || null
     );
 }
+
+// 特殊字符转义成HTML标签
+export function decodeHTML(html){
+    var output, elem = document.createElement('div');
+    elem.innerHTML = html;
+    output = elem.innerText || elem.textContent;
+    elem = null;
+    return output;
+}
