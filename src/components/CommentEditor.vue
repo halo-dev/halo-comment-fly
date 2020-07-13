@@ -297,6 +297,8 @@
                     this.warnings.push("评论内容不能为空");
                     return;
                 }
+                // comment 需要是 Markdown 格式的
+                this.comment.content = this.renderedContent();
                 // Submit the comment
                 this.comment.postId = this.targetId;
                 if (this.replyComment) {
