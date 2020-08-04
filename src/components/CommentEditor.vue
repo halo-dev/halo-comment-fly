@@ -286,9 +286,8 @@
         methods: {
             handleSubmitClick() {
                 if (isEmpty(this.comment.author)) {
-                    // this.warnings.push("评论者昵称不能为空");
-                    // return;
-                    this.comment.author = 'Anonymous';
+                    this.warnings.push("评论者昵称不能为空");
+                    return;
                 }
                 if (isEmpty(this.comment.email)) {
                     this.warnings.push("邮箱不能为空");
