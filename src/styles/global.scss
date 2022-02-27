@@ -576,7 +576,8 @@
     }
 
     .comment-content {
-        padding: 20px 20px 19px 0;
+        padding: 10px 20px 10px 0;
+        margin: 10px 0;
         font-size: 14px;
         color: #4a5568;
 
@@ -840,7 +841,7 @@
 
 .dark-mode {
     input, textarea{
-        background-color: #232125 !important;
+        background-color: #1F2937 !important;
         color: #a9a9b3 !important;
         border: none !important;
     }
@@ -859,20 +860,20 @@
     }
 
     .comment-pre-content  {
-        background-color: #232125 !important;
+        background-color: #1F2937 !important;
         .markdown-body {
             color: #a9a9b3 !important;
         }
         box-shadow: none !important;
     }
     .comment-content {
-        background-color: #292a2d !important;
+        background-color: #1F2937 !important;
         color: #a9a9b3 !important;
         border: none !important;
     }
 
     .comment-preview {
-        background-color: #232125 !important;
+        background-color: #1F2937 !important;
         color: #a9a9b3 !important;
         border: none !important;
     }
