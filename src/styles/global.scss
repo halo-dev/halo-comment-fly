@@ -114,7 +114,7 @@
     .avatar {
         display: block;
         object-fit: cover;
-        border-radius: 100%;
+        border-radius: 5px;
         width: 3.125em;
         height: 3.125em;
         cursor: pointer;
@@ -123,6 +123,10 @@
         &:hover {
             transform: rotate(360deg);
         }
+    }
+
+    .comment-body {
+        margin-bottom: 12px !important;
     }
 
     .comment-editor {
@@ -139,7 +143,8 @@
 
     .comment-form {
         //margin-left: 56px;
-        border: 1px solid #f0f0f0;
+        background-color: #fff;
+        //border: 1px solid #f0f0f0;
         border-radius: 4px;
         margin-bottom: 10px;
         overflow: hidden;
@@ -410,6 +415,7 @@
 
         .comment-editor {
             animation: bottom20 500ms;
+            padding: 0 5%;
 
             .inner {
                 padding: 7px 0 12px;
@@ -472,8 +478,8 @@
 
     .comment-nodes .index-1 {
         overflow: hidden;
-        margin-top: 30px;
-        padding-bottom: 20px;
+        margin-top: 20px;
+        //padding-bottom: 20px;
         border-bottom: 3px solid #f5f8fa;
     }
 
@@ -544,13 +550,39 @@
     }
 
     .comment-author {
-        font-size: 14px;
+        //font-size: 14px;
 
         .author-name {
             font-size: 16px;
             font-weight: 700;
-            margin-right: 10px;
-            //color: #666;
+            margin-right: 5px;
+            --tw-text-opacity: 1;
+            color: $gray-800;
+        }
+
+        .author-reply {
+            color: $gray-500;
+            svg g polyline {
+                stroke: $gray-500;
+            }
+
+            .reply-author {
+                margin: 0 5px;
+            }
+
+        }
+
+        .author-admin {
+            margin-right: 5px;
+            color: #fff;
+            background: $gray-500;
+            padding: 1px 3px;
+            font-size: 10px;
+            line-height: 1.1;
+            font-weight: 700;
+            border-radius: 3px;
+            display: inline-block;
+            opacity: .9;
         }
     }
 
@@ -564,7 +596,7 @@
         display: inline-block;
         margin-top: 6px;
         font-size: 10px;
-        color: #b3b3b3;
+        color: $gray-500;
     }
 
     .comment-id {
@@ -576,7 +608,6 @@
     }
 
     .comment-content {
-        padding: 10px 20px 10px 0;
         margin: 10px 0;
         font-size: 14px;
         color: #4a5568;
@@ -599,23 +630,12 @@
     }
 
     .comment-reply {
-        //display: none;
         float: right;
         font-size: 12px;
-        color: #ff5f5f;
         padding: 1px 5px;
         border-radius: 3px;
         line-height: 1.5;
-        //background: #898c7b;
         transition: all .2s ease-in-out;
-
-        //a {
-        //    color: #ffffff;
-        //
-        //    //&:hover {
-        //    //    color: #;
-        //    //}
-        //}
     }
 
     .comment-alert {
@@ -840,6 +860,9 @@
 }
 
 .dark-mode {
+    //--tw-bg-opacity: 1;
+    //background-color: rgba(17,24,39,var(--tw-bg-opacity));
+
     input, textarea{
         background-color: #1F2937 !important;
         color: #a9a9b3 !important;
@@ -867,7 +890,7 @@
         box-shadow: none !important;
     }
     .comment-content {
-        background-color: #1F2937 !important;
+        //background-color: #1F2937 !important;
         color: #a9a9b3 !important;
         border: none !important;
     }
@@ -890,5 +913,24 @@
         background-color: #676a6c;
         color: #fff;
         border: 1px solid #676a6c;
+    }
+
+    .comment-author {
+        .author-name {
+            //color: $gray-300
+            color: rgba(255,255,255, .6);
+        }
+        .comment-time {
+            color: rgba(255,255,255, .6);
+        }
+        .reply-author a {
+            //color: $gray-300 !important;
+            color: rgba(255,255,255, .6) !important;
+        }
+    }
+
+    .comment-form {
+        --tw-bg-opacity: 1;
+        background-color: rgba(31,41,55,var(--tw-bg-opacity));
     }
 }

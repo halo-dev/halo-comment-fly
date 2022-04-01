@@ -299,7 +299,7 @@
                     return;
                 }
                 // comment 需要是 Markdown 格式的
-                const content = marked(this.comment.content);
+                const content = this.comment.content;
 
                 // Submit the comment
                 this.comment.postId = this.targetId;

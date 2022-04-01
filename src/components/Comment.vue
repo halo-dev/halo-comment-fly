@@ -1,67 +1,68 @@
 <template>
   <div
-    :class="mergedConfigs.darkMode ? 'halo-comment dark-mode': 'halo-comment'"
-    id="halo-comment"
+      :class="mergedConfigs.darkMode ? 'halo-comment dark-mode': 'halo-comment'"
+      id="halo-comment"
   >
 
     <comment-editor
-      :targetId="id"
-      :target="target"
-      :options="options"
-      :configs="mergedConfigs"
+        :targetId="id"
+        :target="target"
+        :options="options"
+        :configs="mergedConfigs"
     />
     <div class="comment-count">
-      <span class="vnum" v-html="commentCount"></span>  评论
+      <span class="vnum" v-html="commentCount"></span> 评论
     </div>
     <div
-      class="comment-load-button"
-      v-if="!mergedConfigs.autoLoad && !loaded"
+        class="comment-load-button"
+        v-if="!mergedConfigs.autoLoad && !loaded"
     >
       <a
-        class="button-load"
-        href="javascript:void(0)"
-        rel="nofollow noopener"
-        @click="loadComments"
+          class="button-load"
+          href="javascript:void(0)"
+          rel="nofollow noopener"
+          @click="loadComments"
       >加载评论</a>
     </div>
 
     <comment-loading
-      v-show="commentLoading"
-      :configs="typeof configs === 'string' ? JSON.parse(configs) : configs"
+        v-show="commentLoading"
+        :configs="typeof configs === 'string' ? JSON.parse(configs) : configs"
     />
 
     <ol
-      class="comment-nodes"
-      id="comment-nodes"
-      ref="gallery"
-      v-if="comments.length>=1"
+        class="comment-nodes"
+        id="comment-nodes"
+        ref="gallery"
+        v-if="comments.length>=1"
     >
       <template v-for="(comment, index) in comments">
         <CommentNode
-          :targetId="id"
-          :target="target"
-          :comment="comment"
-          :options="options"
-          :configs="mergedConfigs"
-          :key="index"
+            :targetId="id"
+            :target="target"
+            :comment="comment"
+            :options="options"
+            :configs="mergedConfigs"
+            :key="index"
         />
       </template>
     </ol>
 
     <div
-      v-if="loaded && !commentLoading && comments.length<=0"
-      class="comment-empty"
-    >暂无评论</div>
+        v-if="loaded && !commentLoading && comments.length<=0"
+        class="comment-empty"
+    >暂无评论
+    </div>
 
     <div
-      v-if="pagination.pages>1"
-      class="comment-page"
+        v-if="pagination.pages>1"
+        class="comment-page"
     >
       <pagination
-        :page="pagination.page"
-        :size="pagination.size"
-        :total="pagination.total"
-        @change="handlePaginationChange"
+          :page="pagination.page"
+          :size="pagination.size"
+          :total="pagination.total"
+          @change="handlePaginationChange"
       />
     </div>
   </div>
@@ -86,7 +87,7 @@ export default {
       type: String,
       required: false,
       default: "post",
-      validator: function(value) {
+      validator: function (value) {
         return ["post", "sheet", "journal"].indexOf(value) !== -1;
       }
     },
@@ -114,7 +115,7 @@ export default {
         size: 5,
         total: 0
       },
-      commentCount:0,
+      commentCount: 0,
       commentLoading: false,
       loaded: false,
       repliedSuccess: null,
@@ -135,14 +136,14 @@ export default {
         propConfigs = JSON.parse(this.configs);
       }
       return Object.assign(
-              {
-                autoLoad: true,
-                showUserAgent: true,
-                gravatarSource: "//cdn.v2ex.com/gravatar",
-                loadingStyle: "default",
-                darkMode: false
-              },
-              propConfigs
+          {
+            autoLoad: true,
+            showUserAgent: true,
+            gravatarSource: "//cdn.v2ex.com/gravatar",
+            loadingStyle: "default",
+            darkMode: false
+          },
+          propConfigs
       );
     }
   },
@@ -170,23 +171,23 @@ export default {
       this.comments = [];
       this.commentLoading = true;
       commentApi
-        .listComments(this.target, this.id, "tree_view", this.pagination)
-        .then(response => {
-          this.commentCount = response.data.data.commentCount;
-          this.comments = response.data.data.content;
-          this.pagination.size = response.data.data.rpp;
-          this.pagination.total = response.data.data.total;
-          this.pagination.pages = response.data.data.pages;
-          if (this.comments) {
-            this.comments.forEach((comment) => {
-              this.setCommentAuthor(comment);
-            })
-          }
-        })
-        .finally(() => {
-          this.commentLoading = false;
-          this.loaded = true;
-        });
+          .listComments(this.target, this.id, "tree_view", this.pagination)
+          .then(response => {
+            this.commentCount = response.data.data.commentCount;
+            this.comments = response.data.data.content;
+            this.pagination.size = response.data.data.rpp;
+            this.pagination.total = response.data.data.total;
+            this.pagination.pages = response.data.data.pages;
+            if (this.comments) {
+              this.comments.forEach((comment) => {
+                this.setCommentAuthor(comment);
+              })
+            }
+          })
+          .finally(() => {
+            this.commentLoading = false;
+            this.loaded = true;
+          });
     },
     setCommentAuthor(comment) {
       if (comment.children) {
@@ -220,7 +221,10 @@ export default {
 </script>
 <style lang="scss">
 $color: #666;
-$md-link-color:#1890ff;
+$md-link-color: #1890ff;
+$gray-300: rgba(209, 213, 219, 1);
+$gray-500: rgba(107, 114, 128, 1);
+$gray-800: rgba(31, 41, 55, 1);
 @import "../styles/global";
 @import "../styles/github-markdown";
 </style>
