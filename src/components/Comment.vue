@@ -221,7 +221,7 @@ export default {
 </script>
 <style lang="scss">
 $color: #666;
-$md-link-color: #1890ff;
+$md-link-color: rgb(31, 109, 218);
 $gray-300: rgba(209, 213, 219, 1);
 $gray-500: rgba(107, 114, 128, 1);
 $gray-800: rgba(31, 41, 55, 1);

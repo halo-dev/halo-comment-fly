@@ -119,10 +119,6 @@
         height: 3.125em;
         cursor: pointer;
         transition: all 0.8s;
-
-        &:hover {
-            transform: rotate(360deg);
-        }
     }
 
     .comment-body {
@@ -211,9 +207,18 @@
         }
     }
 
-    .comment.index-1>ol.children {
-        padding-left: 1.2rem;
+    @media only screen and (max-width:768px) {
+        .comment.index-1>ol.children {
+            padding-left: 3.125rem;
+        }
     }
+
+    @media only screen and (min-width:768px) {
+        .comment ol.children {
+            padding-left: 3.125rem;
+        }
+    }
+
 
 
     .children img.avatar {
@@ -244,16 +249,6 @@
         }
     }
 
-    .comment-emoji-wrap {
-        //-webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-        //box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-        //position: absolute;
-        // bottom: 58px;
-        //left: 19%;
-        //z-index: 1;
-        //width: 248px;
-    }
-
     .comment-buttons {
         font-size: 12px;
         text-align: right;
@@ -265,10 +260,7 @@
         .button-submit,
         .button-preview-edit {
             animation: bottom20 500ms;
-            //border: none;
-            //background: $color;
             border: 1px solid $color;
-            //color: #fff;
             font-weight: 500;
             padding: 3px 12px;
             text-transform: uppercase;
@@ -280,11 +272,7 @@
                 color: #1890ff;
                 border: 1px solid #1890ff;
                 font-weight: 700;
-                //letter-spacing: 3px;
                 background: none;
-                //-webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-                //-moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-                //box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
                 transition: all 0.3s ease 0s;
             }
         }
@@ -532,15 +520,6 @@
     .comment-meta {
         line-height: 1;
 
-        .useragent-info {
-            //margin-top: 6px;
-            font-size: 10px;
-            color: #b3b3b3;
-            //margin-left: 10px;
-            //display: inline-block;
-            //margin-left: 1rem;
-        }
-
         @media only screen and (max-width:768px) {
             .useragent-info {
                 display: block;
@@ -557,7 +536,7 @@
             font-weight: 700;
             margin-right: 5px;
             --tw-text-opacity: 1;
-            color: $gray-800;
+            color: $md-link-color;
         }
 
         .author-reply {
@@ -615,27 +594,56 @@
         p {
             margin: 0;
 
+            font-weight: 400;
+
             img {
                 max-width: 50%;
             }
         }
     }
 
-    .comment-content.markdown-body > p {
-        //display: inline-block;
-        margin-left: .5rem;
-    }
     .comment-content.markdown-body a {
         color: $md-link-color;
     }
 
+    .separator {
+        //height: 15px;
+        //position: relative;
+        //top: 1px;
+        //border-right: 2px solid #c2c6cc;
+        //filter: alphac
+        color: $gray-500;
+    }
+
+    .collapse {
+        position: relative;
+        top: -1px;
+        padding: 0;
+        cursor: pointer;
+        transition: all .5s ease-in-out;
+
+        &:hover {
+            font-weight: 700;
+            opacity: .6;
+        }
+    }
+
     .comment-reply {
-        float: right;
         font-size: 12px;
-        padding: 1px 5px;
+        padding: 1px 0;
+        cursor: pointer;
         border-radius: 3px;
         line-height: 1.5;
-        transition: all .2s ease-in-out;
+        transition: color .2s ease;
+
+        &:hover {
+            font-weight: 700;
+        }
+    }
+
+    .reply-editing {
+        font-weight: 700;
+        color: $md-link-color !important;
     }
 
     .comment-alert {
@@ -860,8 +868,8 @@
 }
 
 .dark-mode {
-    //--tw-bg-opacity: 1;
-    //background-color: rgba(17,24,39,var(--tw-bg-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgba(17,24,39,var(--tw-bg-opacity));
 
     input, textarea{
         background-color: #1F2937 !important;
@@ -918,15 +926,18 @@
     .comment-author {
         .author-name {
             //color: $gray-300
-            color: rgba(255,255,255, .6);
+            //color: rgba(255,255,255, .6);
         }
         .comment-time {
             color: rgba(255,255,255, .6);
         }
         .reply-author a {
-            //color: $gray-300 !important;
             color: rgba(255,255,255, .6) !important;
         }
+    }
+
+    .comment-reply {
+        color: rgba(255,255,255, .6);
     }
 
     .comment-form {

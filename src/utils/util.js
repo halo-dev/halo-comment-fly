@@ -3,56 +3,78 @@
  * @param {*} time
  */
 export function timeAgo(time) {
-    var currentTime = new Date().getTime()
-    var between = currentTime - time
-    var days = Math.floor(between / (24 * 3600 * 1000))
-    if (days === 0) {
-        var leave1 = between % (24 * 3600 * 1000)
-        var hours = Math.floor(leave1 / (3600 * 1000))
-        if (hours === 0) {
-            var leave2 = leave1 % (3600 * 1000)
-            var minutes = Math.floor(leave2 / (60 * 1000))
-            if (minutes === 0) {
-                var leave3 = leave2 % (60 * 1000)
-                var seconds = Math.round(leave3 / 1000)
-                return seconds + ' 秒前'
-            }
-            return minutes + ' 分钟前'
-        }
-        return hours + ' 小时前'
+    const minute = 1000 * 60;      //把分，时，天，周，半个月，一个月用毫秒表示
+    const hour = minute * 60;
+    const day = hour * 24;
+    const week = day * 7;
+    // const halfamonth = day * 15;
+    const month = day * 30;
+    const now = new Date().getTime();   //获取当前时间毫秒
+    const diffValue = now - time;//时间差
+
+    if (diffValue < 0) {
+        return;
     }
-    if (days < 0) return '刚刚'
-    if (days < 1) {
-        return days + ' 天前'
+    const minC = diffValue / minute;  //计算时间差的分，时，天，周，月
+    const hourC = diffValue / hour;
+    const dayC = diffValue / day;
+    const weekC = diffValue / week;
+    const monthC = diffValue / month;
+    let result;
+    if (monthC >= 1 && monthC <= 3) {
+        result = " " + parseInt(monthC) + "月前";
+    } else if (weekC >= 1 && weekC <= 4) {
+        if (weekC > 4) {
+            result = " " + Math.floor(weekC) + "周前";
+        } else {
+            result = " " + parseInt(weekC) + "周前";
+        }
+    } else if (dayC >= 1 && dayC <= 6) {
+        result = " " + parseInt(dayC) + "天前";
+    } else if (hourC >= 1 && hourC <= 23) {
+        result = " " + parseInt(hourC) + "小时前";
+    } else if (minC >= 1 && minC <= 59) {
+        result = " " + parseInt(minC) + "分钟前";
+    } else if (diffValue >= 0 && diffValue <= minute) {
+        result = "刚刚";
     } else {
-        return formatDate(time, 'yyyy/MM/dd hh:mm');
+        var datetime = new Date();
+        datetime.setTime(time);
+        var Nyear = datetime.getFullYear();
+        var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+        var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+        var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+        var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+        // var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+        result = Nyear + "/" + Nmonth + "/" + Ndate + " " + Nhour + ":" + Nminute;
     }
+    return result;
 }
 
-function formatDate(date, fmt) {
-    date = new Date(date);
-    if (/(y+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
-    }
-    let o = {
-        'M+': date.getMonth() + 1,
-        'd+': date.getDate(),
-        'h+': date.getHours(),
-        'm+': date.getMinutes(),
-        's+': date.getSeconds()
-    };
-    for (let k in o) {
-        if (new RegExp(`(${k})`).test(fmt)) {
-            let str = o[k] + '';
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
-        }
-    }
-    return fmt;
-}
+// function formatDate(date, fmt) {
+//     date = new Date(date);
+//     if (/(y+)/.test(fmt)) {
+//         fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+//     }
+//     let o = {
+//         'M+': date.getMonth() + 1,
+//         'd+': date.getDate(),
+//         'h+': date.getHours(),
+//         'm+': date.getMinutes(),
+//         's+': date.getSeconds()
+//     };
+//     for (let k in o) {
+//         if (new RegExp(`(${k})`).test(fmt)) {
+//             let str = o[k] + '';
+//             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
+//         }
+//     }
+//     return fmt;
+// }
 
-function padLeftZero(str) {
-    return ('00' + str).substr(str.length);
-}
+// function padLeftZero(str) {
+//     return ('00' + str).substr(str.length);
+// }
 
 // From <https://www.w3resource.com/javascript-exercises/javascript-regexp-exercise-9.php>
 export function isUrl(str) {

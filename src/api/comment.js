@@ -15,8 +15,8 @@ commentApi.createComment = (target, comment) => {
 // eslint-disable-next-line no-unused-vars
 commentApi.listComments = (target, targetId, view = 'tree_view', pagination) => {
     return service({
-        url: `${baseUrl}/${target}/${targetId}/comments/${view}`,
-        // url: 'http://localhost:8090/api/content/posts/1/comments/tree_view',
+        // url: `${baseUrl}/${target}/${targetId}/comments/${view}`,
+        url: 'https://baozi.fun/api/content/sheets/7/comments/tree_view',
         params: pagination,
         method: 'get'
     })
