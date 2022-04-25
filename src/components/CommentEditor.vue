@@ -238,19 +238,13 @@
                 return this.comment.content ? marked(this.comment.content) : "";
             },
             avatar() {
-                if (!this.comment.email || !validEmail(this.comment.email)) {
-                    return (
-                        this.configs.gravatarSource +
-                        "?d=" +
-                        this.options.comment_gravatar_default
-                    );
-                }
-                const gravatarMd5 = md5(this.comment.email);
-                return (
-                    this.configs.gravatarSource +
-                    `/${gravatarMd5}?s=256&d=` +
-                    this.options.comment_gravatar_default
-                );
+              const gravatarDefault = this.options.comment_gravatar_default
+              const gravatarSource = this.options.gravatar_source || '//cn.gravatar.com/avatar/'
+              if (!this.comment.email || !validEmail(this.comment.email)) {
+                return `${gravatarSource}?d=${gravatarDefault}`
+              }
+              const gravatarMd5 = md5(this.comment.email)
+              return `${gravatarSource}${gravatarMd5}?s=256&d=${gravatarDefault}`
             },
             commentValid() {
                 return (
