@@ -4,6 +4,8 @@
 
 > 适用于 Halo 的评论组件。
 
+> ⚠️ 当前仓库已不再维护，Halo 2.x 的官方评论模块可查阅：https://github.com/halo-sigs/plugin-comment-widget
+
 ![npm](https://img.shields.io/npm/v/halo-comment-normal?style=flat-square)
 [![](https://data.jsdelivr.com/v1/package/npm/halo-comment-normal/badge)](https://www.jsdelivr.com/package/npm/halo-comment-normal)
 
